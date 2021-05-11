@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drum Kit</title>
+<link rel="stylesheet" href="vjs1.css">
+<style>
+    html {
+        background: url(img.png);
+        background-repeat: no-repeat;
+      }
+      .divs {
+        border: 2px solid rgb(9, 9, 83);
+        border-radius: 3px;
+        padding: 30px;
+        transition: all 0.07s;
+      }
+      p {
+        align-items: center;
+      }
+      .div1 div {
+        text-align: center;
+        font-size: 130%;
+        text-shadow: 30%;
+      }
+      .div1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 200px 100px 100px 150px;
+      }
+      .playing {
+        border: 2px solid white;
+        box-shadow: 20px 20px 50px whitesmoke;
+        transform: scale(1.1);
+      }
+      
+</style>
+</head>
+<body>
+<div class="div1">
+    <div data-key="65"  class="divs">
+        <kbd>
+            A
+        </kbd>
+        <p>
+            CLAP
+        </p>
+    </div>
+    <div data-key="83"  class="divs">
+        <kbd>
+            S
+        </kbd>
+        <p>
+            HIHAT
+        </p>
+    </div>
+    <div data-key="68"  class="divs">
+        <kbd>
+            D
+        </kbd>
+        <p>
+            KICK
+        </p>
+    </div>
+    <div data-key="70"  class="divs">
+        <kbd>
+            F
+        </kbd>
+        <p>
+            OPENHAT
+        </p>
+    </div>
+    <div data-key="71"  class="divs">
+        <kbd>
+            G
+        </kbd>
+        <p>
+            BOOM
+        </p>
+    </div>
+    <div data-key="72"  class="divs">
+        <kbd>
+            H
+        </kbd>
+        <p>
+            RIDE
+        </p>
+    </div>
+    <div data-key="74"  class="divs">
+        <kbd>
+            J
+        </kbd>
+        <p>
+            SNARE
+        </p>
+    </div>
+    <div data-key="75"  class="divs">
+        <kbd>
+            K
+        </kbd>
+        <p>
+            TOM
+        </p>
+    </div>
+    <div data-key="76" class="divs">
+        <kbd>
+            L
+        </kbd>
+        <p>
+            TIN
+        </p>
+    </div>
+</div>
+</body>
+<script>
+window.addEventListener('keydown',function(e)
+{
+    /* const audio=document.querySelector(`audio[data-key="${e.keyCode}"]`); */
+    const key=document.querySelector(`.divs[data-key="${e.keyCode}"`);
+    key.classList.add('playing');
+});
+function transitionend(e)
+{
+console.log(e);
+if(e.propertyName != 'transform')return;
+this.classList.remove('playing');
+}
+
+const keys=document.querySelectorAll('.divs');
+keys.forEach(key => key.addEventListener('transitionend',transitionend));
+
+</script>
+</html>
